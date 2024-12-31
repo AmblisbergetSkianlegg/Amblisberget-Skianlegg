@@ -71,7 +71,7 @@ const baseLayers = new ol.layer.Group({
 });
 
 const overlayLayers = new ol.layer.Group({
-    title: 'Overlay',
+    title: 'Kartoverlegg',
     layers: [
         new ol.layer.Tile({
             title: 'Skispor',

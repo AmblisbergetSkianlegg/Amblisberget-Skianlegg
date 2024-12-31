@@ -65,8 +65,39 @@ h1 {
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* OpenLayers Controls */
+/* Map Controls Positioning */
+.custom-compass {
+    position: absolute;
+    bottom: 24px;
+    left: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.ol-rotate {
+    position: absolute !important;
+    top: unset !important;
+    bottom: 120px !important;
+    left: 20px !important;
+    right: unset !important;
+}
+
+.ol-zoom {
+    position: absolute !important;
+    top: unset !important;
+    bottom: 24px !important;
+    left: unset !important;
+    right: 8px !important;
+}
+
+/* Ensure controls stay within viewport */
 .ol-control {
+    position: absolute;
     background-color: rgba(255,255,255,0.9) !important;
     border-radius: 8px !important;
     padding: 8px !important;
@@ -78,10 +109,22 @@ h1 {
     color: white !important;
     border-radius: 4px !important;
     transition: background-color 0.3s ease;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px !important;
+    height: 36px !important;
 }
 
-.ol-control button:hover {
-    background-color: #2c5a8f !important;
+.ol-zoom .ol-zoom-in {
+    border-radius: 4px !important;
+    margin-bottom: 4px !important;
+}
+
+.ol-zoom .ol-zoom-out {
+    border-radius: 4px !important;
 }
 
 /* Layer Switcher */
@@ -100,19 +143,6 @@ h1 {
 }
 
 /* Custom Compass */
-.custom-compass {
-    position: absolute;
-    bottom: 24px;
-    left: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    pointer-events: none;
-    z-index: 1000;
-}
-
 .compass-arrow {
     position: absolute;
     top: 50%;
@@ -146,30 +176,6 @@ h1 {
 .compass-label.east { right: 5px; top: 50%; transform: translateY(-50%); }
 .compass-label.south { bottom: 5px; left: 50%; transform: translateX(-50%); }
 .compass-label.west { left: 5px; top: 50%; transform: translateY(-50%); }
-
-/* Control Positioning */
-.ol-rotate {
-    top: unset !important;
-    bottom: 120px !important;
-    left: 20px !important;
-    right: unset !important;
-}
-
-.ol-zoom {
-    top: unset !important;
-    bottom: 24px !important;
-    left: unset !important;
-    right: 8px !important;
-}
-
-.ol-zoom .ol-zoom-in {
-    border-radius: 4px 4px 0 0;
-    margin-bottom: 4px;
-}
-
-.ol-zoom .ol-zoom-out {
-    border-radius: 0 0 4px 4px;
-}
 
 /* Layer Switcher Panel */
 .layer-switcher {
@@ -223,7 +229,7 @@ h1 {
 }
 
 .layer-switcher.shown.layer-switcher-activation-mode-click > button {
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: flex-end;
   background-image: none;
@@ -231,14 +237,14 @@ h1 {
   right: 0;
   top: 0;
   background-color: #f8f9fa;
-  margin: 0;
+  margin: 0  !important;
   border-radius: 0;
   border-bottom: 1px solid #dee2e6;
-  width: 100%;
-  height: 40px;
-  padding: 0 15px;
-  font-size: 14px;
-  color: #495057;
+  width: 100%  !important;
+  height: 40px  !important;
+  padding: 0 15px  !important;
+  font-size: 0.8em !important;
+  float: none;
 }
 
 .layer-switcher.shown.layer-switcher-activation-mode-click > button::before {
@@ -319,24 +325,18 @@ h1 {
     .custom-compass {
         width: 70px;
         height: 70px;
+        bottom: 20px;
+        left: 8px;
     }
 
-    .compass-arrow {
-        height: 35px;
-    }
-
-    .compass-circle {
-        width: 60px;
-        height: 60px;
+    .ol-rotate {
+        bottom: 110px !important;
+        left: 20px !important;
     }
 
     .ol-zoom {
         bottom: 20px !important;
-        right: 6px !important;
-    }
-
-    .ol-rotate {
-        bottom: 100px !important;
+        right: 8px !important;
     }
 }
 
@@ -361,30 +361,20 @@ h1 {
     .custom-compass {
         width: 60px;
         height: 60px;
-        bottom: 20px;
-        left: 6px;
-    }
-
-    .compass-arrow {
-        height: 30px;
-        width: 3px;
+        bottom: 16px;
+        left: 8px;
     }
 
     .compass-circle {
-        width: 50px;
-        height: 50px;
+        width: 54px;
+        height: 54px;
     }
 
-    .compass-label {
-        font-size: 10px;
+    .ol-control {
+        padding: 6px !important;
     }
 
-    .ol-zoom {
-        bottom: 16px !important;
-        right: 4px !important;
-    }
-
-    .ol-zoom button {
+    .ol-control button {
         width: 32px !important;
         height: 32px !important;
         font-size: 1.2em !important;
@@ -392,26 +382,12 @@ h1 {
 
     .ol-rotate {
         bottom: 90px !important;
-        left: 16px !important;
+        left: 18px !important;
     }
 
-    .ol-rotate button {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 1.2em !important;
-    }
-
-    .layer-switcher {
-        max-width: 250px;
-    }
-
-    .layer-switcher.shown.layer-switcher-activation-mode-click > button {
-        height: 36px;
-        font-size: 13px;
-    }
-
-    .layer-switcher li label {
-        font-size: 13px;
+    .ol-zoom {
+        bottom: 16px !important;
+        right: 8px !important;
     }
 }
 
@@ -436,20 +412,37 @@ h1 {
     .custom-compass {
         width: 50px;
         height: 50px;
-    }
-
-    .compass-arrow {
-        height: 25px;
-        width: 2px;
+        bottom: 12px;
+        left: 6px;
     }
 
     .compass-circle {
-        width: 42px;
-        height: 42px;
+        width: 44px;
+        height: 44px;
     }
 
-    .compass-label {
-        font-size: 9px;
+    .ol-control {
+        padding: 4px !important;
+    }
+
+    .ol-control button {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 1.1em !important;
+    }
+
+    .ol-rotate {
+        bottom: 75px !important;
+        left: 15px !important;
+    }
+
+    .ol-zoom {
+        bottom: 12px !important;
+        right: 6px !important;
+    }
+
+    .ol-zoom .ol-zoom-in {
+        margin-bottom: 2px !important;
     }
 
     .layer-switcher {

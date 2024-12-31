@@ -14,6 +14,41 @@ const EXTENDED_EXTENT = [
 
 const MAP_CENTER = [1195049.867416, 8618840.407093];
 
+// Calculate appropriate zoom levels based on screen size
+function calculateZoomLevels() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    
+    // Get the map's container size
+    const headerHeight = document.getElementById('header').offsetHeight;
+    const mapHeight = screenHeight - headerHeight;
+    
+    // Calculate the resolution needed to fit the extent
+    const widthResolution = EXTENT_WIDTH / screenWidth;
+    const heightResolution = EXTENT_HEIGHT / mapHeight;
+    
+    // Use the larger resolution to ensure the entire extent fits
+    const targetResolution = Math.max(widthResolution, heightResolution);
+    
+    // OpenLayers zoom levels are based on powers of 2
+    // Resolution = 156543.03392804097 / (2 ^ zoom) for EPSG:3857
+    // Solving for zoom: zoom = log2(156543.03392804097 / resolution)
+    const baseResolution = 156543.03392804097;
+    const calculatedZoom = Math.log2(baseResolution / targetResolution);
+    
+    // Round down to ensure the extent fits and add a small buffer
+    const minZoom = Math.max(14, Math.floor(calculatedZoom - 0.5));
+    
+    // Desktop users shouldn't zoom out too much
+    const isDesktop = window.innerWidth > 1024;
+    const defaultZoom = isDesktop ? Math.max(minZoom + 1, 18) : minZoom + 2;
+    
+    return { 
+        minZoom: minZoom, // Don't go below zoom level 14
+        defaultZoom: defaultZoom
+    };
+}
+
 // State
 let isDefaultRotation = true;
 
@@ -41,6 +76,7 @@ const overlayLayers = new ol.layer.Group({
         new ol.layer.Tile({
             title: 'Skispor',
             opacity: 0.35,
+            visible: false,
             extent: MAP_EXTENT,
             source: new ol.source.XYZ({
                 minZoom: 14,
@@ -52,6 +88,7 @@ const overlayLayers = new ol.layer.Group({
         new ol.layer.Tile({
             title: 'Skihopp',
             opacity: 0.3,
+            visible: false,
             extent: MAP_EXTENT,
             source: new ol.source.XYZ({
                 minZoom: 14,
@@ -63,6 +100,7 @@ const overlayLayers = new ol.layer.Group({
         new ol.layer.Tile({
             title: 'Parkering',
             opacity: 0.25,
+            visible: false,
             extent: MAP_EXTENT,
             source: new ol.source.XYZ({
                 minZoom: 14,
@@ -74,7 +112,8 @@ const overlayLayers = new ol.layer.Group({
     ]
 });
 
-// Initialize map
+// Initialize map with dynamic zoom levels
+const zoomLevels = calculateZoomLevels();
 const map = new ol.Map({
     controls: ol.control.defaults.defaults().extend([
         new ol.control.Rotate({
@@ -97,8 +136,8 @@ const map = new ol.Map({
     view: new ol.View({
         center: MAP_CENTER,
         rotation: DEFAULT_ROTATION,
-        zoom: 18,
-        minZoom: 18,
+        zoom: zoomLevels.defaultZoom,
+        minZoom: zoomLevels.minZoom,
         maxZoom: 23,
         extent: EXTENDED_EXTENT
     })
@@ -121,3 +160,17 @@ function updateCompass() {
 // Initialize compass
 map.getView().on('change:rotation', updateCompass);
 updateCompass();
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    const newZoomLevels = calculateZoomLevels();
+    const view = map.getView();
+    
+    // Update min zoom
+    view.setMinZoom(newZoomLevels.minZoom);
+    
+    // If current zoom is less than new min zoom, adjust it
+    if (view.getZoom() < newZoomLevels.minZoom) {
+        view.setZoom(newZoomLevels.minZoom);
+    }
+});

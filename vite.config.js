@@ -1,4 +1,6 @@
 import { defineConfig } from 'vite';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 export default defineConfig({
   base: './',
@@ -9,7 +11,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [tailwind, autoprefixer],
+      plugins: [tailwindcss, autoprefixer],
     }
   }
 });

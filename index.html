@@ -4,31 +4,28 @@
         <title>Amblisberget Skianlegg</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@8.2.0/ol.css">
-        <script src="https://cdn.jsdelivr.net/npm/ol@8.2.0/dist/ol.js"></script>
-        <script src="https://unpkg.com/ol-layerswitcher@4.1.1"></script>
-        <link rel="stylesheet" href="https://unpkg.com/ol-layerswitcher@4.1.1/src/ol-layerswitcher.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
-        <link href="styles/main.css" rel="stylesheet">
+        <link rel="stylesheet" href="/src/index.css">
     </head>
     <body>
         <div id="header">
-            <div class="logo-container">
+            <span>
                 <h1>Amblisberget Skianlegg</h1>
-            </div>
-            <div class="info-text">Kartlagt av <a href="https://mjosdrone.no" target="_blank" rel="noopener noreferrer">MjøsDrone</a></div>
+                <p class="info-text">Kartlagt av <a href="https://mjosdrone.no" target="_blank" rel="noopener noreferrer">MjøsDrone</a></p>
+            </span>
         </div>
-        <div id="map"></div>
-        <div class="custom-compass">
-            <div class="compass-circle"></div>
-            <div class="compass-arrow"></div>
-            <div class="compass-label north">N</div>
-            <div class="compass-label east">Ø</div>
-            <div class="compass-label south">S</div>
-            <div class="compass-label west">V</div>
+        <div id="map" class="h-[calc(100vh-theme(spacing.header))] w-full bg-black">
+          <div class="absolute bottom-4 left-4 bg-white/90 rounded-full w-20 h-20 shadow-md pointer-events-none z-10">
+              <div class="compass-center w-20 h-20 border-4 border-gray-600 rounded-full"></div>
+              <div id="compass-arrow" class="compass-center w-[0.2rem] h-9 bg-gradient-to-b from-accent to-gray-600 origin-center"></div>
+              <div class="compass-label top-1 left-1/2 -translate-x-1/2">N</div>
+              <div class="compass-label right-1 top-1/2 -translate-y-1/2 pr-[0.2rem]">Ø</div>
+              <div class="compass-label bottom-1 left-1/2 -translate-x-1/2">S</div>
+              <div class="compass-label left-1 top-1/2 -translate-y-1/2 pl-[0.2rem]">V</div>
+          </div>
         </div>
-        <script type="text/javascript" src="js/main.js"></script>
+        <script type="module" src="/src/main.ts"></script>
     </body>
 </html>

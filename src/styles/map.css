@@ -1,0 +1,126 @@
+@import '../../node_modules/ol/ol.css';
+@import '../../node_modules/ol-layerswitcher/dist/ol-layerswitcher.css';
+
+/* OpenLayers viewport and containers */
+.ol-viewport {
+    @apply h-[calc(100vh-theme(spacing.header))] !important;
+}
+
+.ol-viewport.ol-touch {
+    @apply h-[calc(100vh-theme(spacing.header))] !important;
+}
+
+/* OpenLayers Controls */
+.ol-control {
+    @apply rounded-lg shadow-sm bg-transparent !important;
+}
+
+.ol-control button {
+    @apply bg-primary text-white rounded transition-colors m-0 p-0 
+            text-base hover:bg-primary/90 !important;
+}
+
+.ol-zoom {
+    @apply fixed bottom-4 right-4 !important;
+    top: unset !important;
+    left: unset !important;
+}
+
+.ol-zoom button {
+    @apply w-9 h-9 items-center justify-center !important;
+}
+
+.ol-zoom .ol-zoom-in {
+    @apply mb-2 !important;
+}
+
+/* Rotate Control */
+.ol-rotate {
+    @apply fixed !important;
+    bottom: calc(theme(spacing[4]) * 2 + theme(spacing.9) * 2 + theme(spacing.2)) !important;
+    right: theme(spacing[4]) !important;
+    top: unset !important;
+    left: unset !important;
+}
+
+.ol-rotate button {
+    @apply w-9 h-9 items-center justify-center !important;
+}
+
+/* Layer Switcher */
+.layer-switcher {
+    @apply absolute top-4 right-4 rounded-lg shadow-md max-w-[18.75rem] p-0;
+}
+
+.layer-switcher.shown.layer-switcher-activation-mode-click {
+  padding-left: unset !important;
+}
+
+.layer-switcher.shown.layer-switcher-activation-mode-click > button {
+    @apply flex items-center justify-end bg-primary text-white relative 
+            m-0 rounded-none border-b border-white/20 w-full h-9
+            px-3 text-sm float-none !important;
+}
+
+.layer-switcher.shown.layer-switcher-activation-mode-click > button::before {
+    content: "Skjul";
+    @apply mr-2.5;
+}
+
+.layer-switcher.shown .panel {
+    @apply block border-none p-1;
+}
+
+.layer-switcher ul {
+    @apply m-0;
+}
+
+.layer-switcher li {
+    @apply relative m-0 py-0.5;
+}
+
+.layer-switcher li.layer {
+    @apply flex items-center;
+}
+
+.layer-switcher li label {
+    @apply pl-7 m-0 leading-none text-[0.9rem];
+}
+
+.layer-switcher li input {
+    @apply absolute left-[0.2em] top-1/2 -translate-y-1/2 m-0 
+            h-[0.9rem] w-[0.9rem];
+}
+
+/* Compass styles */
+.compass-label {
+    @apply absolute text-xs font-bold text-gray-600;
+}
+
+.compass-center {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+
+@media (max-width: 64em) { /* 1024px */
+  .ol-viewport {
+      @apply h-[calc(100vh-theme(spacing.header-tablet))] !important;
+  }
+  
+  .ol-viewport.ol-touch {
+      @apply h-[calc(100vh-theme(spacing.header-tablet))] !important;
+  }
+}
+
+@media (max-width: 48em) { /* 768px */
+}
+
+@media (max-width: 30em) { /* 480px */
+  .ol-viewport {
+      @apply h-[calc(100vh-theme(spacing.header-mobile))] !important;
+  }
+  
+  .ol-viewport.ol-touch {
+      @apply h-[calc(100vh-theme(spacing.header-mobile))] !important;
+  }
+}

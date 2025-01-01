@@ -1,3 +1,14 @@
+import './styles/map.css';
+
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import XYZ from 'ol/source/XYZ';
+import LayerSwitcher from 'ol-layerswitcher';
+import { defaults as defaultControls, Rotate } from 'ol/control';
+import { Group as LayerGroup } from 'ol/layer';
+
+
 // Constants
 const DEFAULT_ROTATION = -Math.PI / 2;
 const MAP_EXTENT = [1194558.803012, 8618317.604343, 1195540.931820, 8619363.209844];
@@ -53,14 +64,14 @@ function calculateZoomLevels() {
 let isDefaultRotation = true;
 
 // Initialize map layers
-const baseLayers = new ol.layer.Group({
+const baseLayers = new LayerGroup({
     title: null,
     layers: [
-        new ol.layer.Tile({
+        new TileLayer({
             title: null,
             type: 'base',
             extent: MAP_EXTENT,
-            source: new ol.source.XYZ({
+            source: new XYZ({
                 minZoom: 14,
                 maxZoom: 22,
                 url: './base/{z}/{x}/{-y}.png',
@@ -70,39 +81,39 @@ const baseLayers = new ol.layer.Group({
     ]
 });
 
-const overlayLayers = new ol.layer.Group({
+const overlayLayers = new LayerGroup({
     title: 'Kartoverlegg',
     layers: [
-        new ol.layer.Tile({
+        new TileLayer({
             title: 'Skispor',
             opacity: 0.35,
             visible: false,
             extent: MAP_EXTENT,
-            source: new ol.source.XYZ({
+            source: new XYZ({
                 minZoom: 14,
                 maxZoom: 22,
                 url: './overlay_ski_tracks/{z}/{x}/{-y}.png',
                 tileSize: [256, 256]
             })
         }),
-        new ol.layer.Tile({
+        new TileLayer({
             title: 'Skihopp',
             opacity: 0.3,
             visible: false,
             extent: MAP_EXTENT,
-            source: new ol.source.XYZ({
+            source: new XYZ({
                 minZoom: 14,
                 maxZoom: 22,
                 url: './overlay_ski_jump/{z}/{x}/{-y}.png',
                 tileSize: [256, 256]
             })
         }),
-        new ol.layer.Tile({
+        new TileLayer({
             title: 'Parkering',
             opacity: 0.25,
             visible: false,
             extent: MAP_EXTENT,
-            source: new ol.source.XYZ({
+            source: new XYZ({
                 minZoom: 14,
                 maxZoom: 22,
                 url: './overlay_parking/{z}/{x}/{-y}.png',
@@ -114,11 +125,10 @@ const overlayLayers = new ol.layer.Group({
 
 // Initialize map with dynamic zoom levels
 const zoomLevels = calculateZoomLevels();
-const map = new ol.Map({
-    controls: ol.control.defaults.defaults().extend([
-        new ol.control.Rotate({
+const map = new Map({
+    controls: defaultControls({rotate: false}).extend([
+        new Rotate({
             autoHide: false,
-            label: '⟲',
             tipLabel: 'Tilbakestill rotasjon',
             resetNorth: function() {
                 const view = map.getView();
@@ -133,7 +143,7 @@ const map = new ol.Map({
     ]),
     target: 'map',
     layers: [baseLayers, overlayLayers],
-    view: new ol.View({
+    view: new View({
         center: MAP_CENTER,
         rotation: DEFAULT_ROTATION,
         zoom: zoomLevels.defaultZoom,
@@ -144,16 +154,16 @@ const map = new ol.Map({
 });
 
 // Add layer switcher control
-map.addControl(new ol.control.LayerSwitcher({
+map.addControl(new LayerSwitcher({
     activationMode: 'click',
-    startActive: true,
+    startActive: false,
     groupSelectStyle: 'none'  // Prevents group selection
 }));
 
 // Update compass rotation
 function updateCompass() {
     const rotation = map.getView().getRotation();
-    document.querySelector('.compass-arrow').style.transform = 
+    document.querySelector('#compass-arrow').style.transform = 
         `translate(-50%, -50%) rotate(${rotation * (180 / Math.PI)}deg)`;
 }
 

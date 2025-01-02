@@ -7,7 +7,7 @@
 
 .ol-control button {
   @apply bg-primary text-text-inverse rounded-lg duration-normal ease-in-out m-0 p-0 
-         text-base hover:bg-primary-hover transform hover:scale-105 !important;
+         text-lg hover:bg-primary-hover transform hover:scale-105 !important;
   width: var(--map-control-size) !important;
   height: var(--map-control-size) !important;
 }

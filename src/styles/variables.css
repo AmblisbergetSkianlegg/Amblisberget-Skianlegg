@@ -28,7 +28,7 @@
    * Used for backgrounds and subtle UI elements
    * Darker shade provides good contrast with primary colors
    */
-  --color-secondary: 51 71 91; /* #33475B - Slate blue */
+  --color-secondary: 51 100 150; /* #336496 - Deep navy blue */
   --color-secondary-rgb: rgb(var(--color-secondary));
   --color-secondary-90: rgb(var(--color-secondary) / 0.9);
   --color-secondary-50: rgb(var(--color-secondary) / 0.5);
@@ -142,14 +142,6 @@
   --transition-duration-normal: 250ms;
   --transition-timing-function: ease-in-out;
 
-  /* Map Controls
-   * Specific variables for map interface elements
-   * Consistent sizing and spacing for controls
-   */
-  --map-control-size: 2.25rem;  /* 36px - Control button size */
-  --map-control-spacing: 1rem;  /* 16px - Space between controls */
-  --map-viewport-height: calc(100vh - var(--spacing-header) - var(--spacing-statusBar));
-
   /* Neutral Colors
    * Basic black and white colors for text and overlays
    * Defined in RGB for opacity support
@@ -180,7 +172,7 @@
   /* Colors - Secondary
    * Rich dark blue that echoes the light theme's navy
    */
-  --color-secondary: 28 42 64; /* #1c2a40 - Deep navy */
+  --color-secondary: 41 54 73; /* #293649 - Deep navy */
   --color-secondary-rgb: rgb(var(--color-secondary));
 
   /* Colors - Accent
@@ -221,22 +213,4 @@
   --shadow-sm: 0 1px 2px rgb(var(--color-shadow) / 0.1);
   --shadow-md: 0 4px 6px rgb(var(--color-shadow) / 0.15);
   --shadow-lg: 0 8px 12px rgb(var(--color-shadow) / 0.2);
-}
-
-/* Tablet Breakpoint Variables
- * Adjusts viewport height for tablet header size
- */
-@media (max-width: 64em) {
-  :root {
-    --map-viewport-height: calc(100dvh - var(--spacing-header-tablet) - var(--spacing-statusBar));
-  }
-}
-
-/* Mobile Breakpoint Variables
- * Adjusts viewport height for mobile header size
- */
-@media (max-width: 30em) {
-  :root {
-    --map-viewport-height: calc(100dvh - var(--spacing-header-mobile));
-  }
 }

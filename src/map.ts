@@ -70,7 +70,7 @@ const baseLayers = new LayerGroup({
     title: null,
     layers: [
         new TileLayer({
-            title: 'Amblisberget Skianlegg',
+            title: 'Skianlegg Kart',
             type: 'base',
             extent: MAP_EXTENT,
             source: new XYZ({

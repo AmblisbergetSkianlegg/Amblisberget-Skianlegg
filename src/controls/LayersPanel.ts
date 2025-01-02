@@ -1,6 +1,6 @@
 import { Control } from 'ol/control';
 import { Map as OlMap } from 'ol';
-import { Group as LayerGroup, Base as BaseLayer } from 'ol/layer';
+import { Group as LayerGroup, Layer as BaseLayer } from 'ol/layer';
 
 
 export class LayersPanel extends Control {
@@ -114,17 +114,48 @@ export class LayersPanel extends Control {
         const item = document.createElement('div');
         item.className = 'layer-item';
 
+        const isBaseLayer = layer.get('type') === 'base';
+        const inputId = `layer-toggle-${Math.random().toString(36).substr(2, 9)}`;
+
         const toggle = document.createElement('input');
-        toggle.type = 'checkbox';
+        toggle.type = isBaseLayer ? 'radio' : 'checkbox';
+        if (isBaseLayer) {
+            toggle.name = 'base-layer';
+        }
         toggle.checked = layer.getVisible();
-        toggle.className = 'layer-toggle';
+        toggle.className = isBaseLayer ? 'layer-radio' : 'layer-toggle';
+        toggle.id = inputId;
 
         const label = document.createElement('label');
         label.className = 'layer-label';
         label.textContent = title;
+        label.htmlFor = inputId;
 
-        toggle.addEventListener('change', () => {
-            layer.setVisible(toggle.checked);
+        const toggleLayer = () => {
+            if (isBaseLayer) {
+                // For base layers, we need to uncheck all other base layers
+                const map = this.getMap();
+                if (!map) return;
+                
+                const allLayers = map.getLayers().getArray();
+                allLayers.forEach(l => {
+                    if (l.get('type') === 'base') {
+                        l.setVisible(l === layer);
+                    }
+                });
+                toggle.checked = true;
+            } else {
+                const newState = !layer.getVisible();
+                layer.setVisible(newState);
+                toggle.checked = newState;
+            }
+        };
+
+        toggle.addEventListener('change', toggleLayer);
+
+        label.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default label behavior
+            toggleLayer();
         });
 
         item.appendChild(toggle);
@@ -135,24 +166,16 @@ export class LayersPanel extends Control {
 
     private createLayerGroup(group: LayerGroup): HTMLElement | null {
         const title = group.get('title');
-        if (!title) return null;
-
-        const section = document.createElement('div');
-        section.className = 'layer-group';
-
-        const header = document.createElement('div');
-        header.className = 'group-header';
+        const layers = group.getLayers().getArray();
         
-        const titleElement = document.createElement('h3');
-        titleElement.textContent = title;
-        header.appendChild(titleElement);
+        // Create wrapper for group content and separator
+        const wrapper = document.createElement('div');
+        wrapper.className = 'layer-group-wrapper';
         
-        section.appendChild(header);
-
         const content = document.createElement('div');
         content.className = 'group-content';
 
-        const layers = group.getLayers().getArray();
+        // Process all layers in this group
         layers.forEach(layer => {
             if (layer instanceof LayerGroup) {
                 const groupElement = this.createLayerGroup(layer);
@@ -167,12 +190,35 @@ export class LayersPanel extends Control {
             }
         });
 
-        // Only return the section if it has any visible layers
-        if (content.children.length > 0) {
-            section.appendChild(content);
-            return section;
+        // If there are no visible layers, return null
+        if (content.children.length === 0) return null;
+
+        // Add separator
+        const separator = document.createElement('div');
+        separator.className = 'layer-group-separator';
+        wrapper.appendChild(separator);
+
+        // If the group has no title, add content directly to wrapper
+        if (!title) {
+            wrapper.appendChild(content);
+            return wrapper;
         }
-        return null;
+
+        // If the group has a title, create a proper group structure
+        const section = document.createElement('div');
+        section.className = 'layer-group';
+
+        const header = document.createElement('div');
+        header.className = 'group-header';
+        
+        const titleElement = document.createElement('h3');
+        titleElement.textContent = title;
+        header.appendChild(titleElement);
+        
+        section.appendChild(header);
+        section.appendChild(content);
+        wrapper.appendChild(section);
+        return wrapper;
     }
 
     private updateLayers(): void {

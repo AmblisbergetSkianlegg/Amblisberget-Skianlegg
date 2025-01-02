@@ -3,6 +3,17 @@
 @import './map/controls.css';
 @import './map/layers-panel.css';
 
+
+:root {
+  /* Map Controls
+   * Specific variables for map interface elements
+   * Consistent sizing and spacing for controls
+   */
+  --map-control-size: 2.5rem;  /* 36px - Control button size */
+  --map-control-spacing: 1rem;  /* 16px - Space between controls */
+  --map-viewport-height: calc(100vh - var(--spacing-header) - var(--spacing-statusBar));
+}
+
 /* OpenLayers viewport and containers */
 #map {
   @apply static h-[var(--map-viewport-height)] w-full bg-black !important;
@@ -68,17 +79,23 @@
 }
 
 
-
 /* Tablet Breakpoint Variables
- * Adjusts viewport height for tablet header size
- */
+* Adjusts viewport height for tablet header size
+*/
 @media (max-width: 64em) {
+  :root {
+    --map-viewport-height: calc(100dvh - var(--spacing-header-tablet) - var(--spacing-statusBar));
+  }
 }
 
 /* Mobile Breakpoint Variables
- * Adjusts viewport height for mobile header size
- */
+* Adjusts viewport height for mobile header size
+*/
 @media (max-width: 30em) {
+  :root {
+    --map-viewport-height: calc(100dvh - var(--spacing-header-mobile));
+  }
+
   #status-bar {
     display: none;
   }

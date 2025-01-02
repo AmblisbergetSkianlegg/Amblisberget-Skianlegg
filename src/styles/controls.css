@@ -1,0 +1,156 @@
+/* Map Controls Styles */
+
+/* OpenLayers Controls */
+.ol-control {
+  @apply rounded-lg shadow-sm bg-transparent !important;
+}
+
+.ol-control button {
+  @apply bg-primary text-text-inverse rounded-lg duration-normal ease-in-out m-0 p-0 
+         text-base hover:bg-primary-hover transform hover:scale-105 !important;
+  width: var(--map-control-size) !important;
+  height: var(--map-control-size) !important;
+}
+
+.ol-control button:hover,
+.ol-control button.ol-control-active {
+  @apply bg-primary-hover !important;
+  color: rgb(var(--color-text-inverse));
+  outline: none !important;
+}
+
+/* Prevent focus state */
+.ol-control button:focus,
+.ol-control button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Zoom Control */
+.ol-zoom {
+  @apply absolute bottom-4 right-4 !important;
+  top: unset !important;
+  left: unset !important;
+}
+
+.ol-zoom button {
+  @apply w-[var(--map-control-size)] h-[var(--map-control-size)] items-center justify-center !important;
+}
+
+.ol-zoom .ol-zoom-in {
+  @apply mb-2 !important;
+}
+
+/* Rotate Control */
+.ol-rotate {
+  @apply absolute !important;
+  bottom: calc(var(--spacing-4) * 2 + var(--map-control-size) * 2 + var(--spacing-2)) !important;
+  right: var(--spacing-4) !important;
+  top: unset !important;
+  left: unset !important;
+}
+
+.ol-rotate button {
+  @apply w-[var(--map-control-size)] h-[var(--map-control-size)] items-center justify-center !important;
+}
+
+/* Compass Control */
+.ol-round-compass {
+  @apply absolute bottom-4 left-4 rounded-full w-20 h-20 shadow-md z-10 bg-primary-hover;
+}
+
+.ol-round-compass-rose {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 border-2 rounded-full border-border-medium;
+}
+
+.ol-round-compass-arrow {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[0.2rem] h-8 origin-center bg-accent-hover;
+  transform: rotate(0deg);
+  transition: transform 0.25s ease-out;
+}
+
+.ol-round-compass-label {
+  @apply absolute text-xs font-semibold text-text-primary;
+}
+
+.ol-round-compass-label:nth-child(1) { @apply top-1 left-1/2 -translate-x-1/2; }
+.ol-round-compass-label:nth-child(2) { @apply right-1 top-1/2 -translate-y-1/2 pr-[0.2rem]; }
+.ol-round-compass-label:nth-child(3) { @apply bottom-1 left-1/2 -translate-x-1/2; }
+.ol-round-compass-label:nth-child(4) { @apply left-1 top-1/2 -translate-y-1/2 pl-[0.2rem]; }
+
+/* Scale Line Container */
+#scale-container .ol-scale-line {
+  @apply relative bg-transparent;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+}
+
+#scale-container .ol-scale-line-inner {
+  @apply relative border-0 border-b-2 border-text-primary text-text-primary text-xxs;
+  padding: 0 2px 2px;
+}
+
+#scale-container .ol-scale-line-inner::before,
+#scale-container .ol-scale-line-inner::after {
+  @apply absolute bottom-0 w-[2px] h-[6px] bg-text-primary;
+  content: '';
+}
+
+#scale-container .ol-scale-line-inner::before {
+  left: 0;
+}
+
+#scale-container .ol-scale-line-inner::after {
+  right: 0;
+}
+
+/* Layer Switcher */
+.layer-switcher {
+  @apply absolute top-4 right-4 rounded-lg shadow-md max-w-[18.75rem] p-0 bg-bg-base;
+  overflow: hidden !important;
+}
+
+.layer-switcher.shown.layer-switcher-activation-mode-click {
+  padding-left: unset !important;
+}
+
+.layer-switcher.shown.layer-switcher-activation-mode-click > button {
+  @apply flex items-center justify-end bg-primary text-text-inverse relative 
+         m-0 rounded-none border-b border-text-inverse/20 w-full h-9
+         px-3 text-sm float-none !important;
+}
+
+.layer-switcher.shown.layer-switcher-activation-mode-click > button::before {
+  content: "Skjul";
+  @apply mr-2.5;
+}
+
+.layer-switcher.shown .panel {
+  @apply block border-none p-1 bg-transparent !important;
+  background-color: rgb(var(--color-bg-elevated)) !important;
+  border: 1px solid rgb(var(--color-border-light)) !important;
+  color: rgb(var(--color-text-primary)) !important;
+}
+
+.layer-switcher ul {
+  @apply m-0;
+}
+
+.layer-switcher li {
+  @apply relative m-0 py-0.5;
+}
+
+.layer-switcher li.layer {
+  @apply flex items-center;
+}
+
+.layer-switcher li label {
+  @apply pl-7 m-0 leading-none text-[0.9rem] text-text-primary;
+  color: rgb(var(--color-text-primary)) !important;
+}
+
+.layer-switcher li input {
+  @apply absolute left-[0.2em] top-1/2 -translate-y-1/2 m-0 
+         h-[0.9rem] w-[0.9rem];
+}

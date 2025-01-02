@@ -1,3 +1,5 @@
+@import './styles/variables.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,7 +7,9 @@
 @layer base {
   /* Base styles */
   html, body { 
-      @apply h-full w-full overflow-hidden p-0 m-0 font-sans bg-secondary;
+      @apply h-full w-full overflow-hidden p-0 m-0 font-sans;
+      background-color: rgb(var(--color-bg-base));
+      color: rgb(var(--color-text-primary));
   }
 }
 
@@ -13,9 +17,9 @@
 @layer components {
   /* Header */
   #header {
-      @apply bg-primary text-white px-8 shadow-sm relative z-10 
-             flex items-center justify-center h-header border-b border-white/30
-             bg-gradient-to-r from-primary to-primary-hover;
+      @apply bg-primary bg-gradient-to-r from-primary to-primary-hover
+             text-text-primary px-8 shadow-sm relative z-10 
+             flex items-center justify-center h-header border-b border-accent/50;
   }
 
   #header > span {
@@ -24,15 +28,21 @@
 
   h1 {
       @apply m-0 text-2xl font-semibold tracking-wide inline-block;
+      color: rgb(var(--color-text-primary));
   }
 
   .info-text {
-      @apply text-base text-white/90 inline-block;
+      @apply text-base inline-block;
+      color: rgb(var(--color-text-primary));
   }
 
   .info-text a {
-      @apply text-white/90 no-underline border-b border-white/50 
-             transition-colors hover:border-white/90;
+      @apply no-underline border-b transition-colors;
+      border-color: rgb(var(--color-text-primary) / 0.5);
+  }
+
+  .info-text a:hover {
+      border-color: rgb(var(--color-text-primary) / 0.9);
   }
 }
 

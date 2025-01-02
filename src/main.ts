@@ -5,9 +5,12 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
 import LayerSwitcher from 'ol-layerswitcher';
-import { defaults as defaultControls, Rotate } from 'ol/control';
+import { defaults as defaultControls, ScaleLine } from 'ol/control';
 import { Group as LayerGroup } from 'ol/layer';
-
+import { RoundCompass } from './controls/Compass';
+import { RotateButton } from './controls/RotateButton';
+import { StatusBar } from './controls/StatusBar';
+import { transform } from 'ol/proj';
 
 // Constants
 const DEFAULT_ROTATION = -Math.PI / 2;
@@ -123,23 +126,29 @@ const overlayLayers = new LayerGroup({
     ]
 });
 
+// Initialize status bar
+const statusBar = new StatusBar({
+    target: document.getElementById('status-bar') || undefined,
+    mapDate: new Date("2024/12/29 12:00:00")
+});
+
 // Initialize map with dynamic zoom levels
 const zoomLevels = calculateZoomLevels();
 const map = new Map({
     controls: defaultControls({rotate: false}).extend([
-        new Rotate({
-            autoHide: false,
-            tipLabel: 'Tilbakestill rotasjon',
-            resetNorth: function() {
-                const view = map.getView();
-                const targetRotation = isDefaultRotation ? 0 : DEFAULT_ROTATION;
-                view.animate({
-                    rotation: targetRotation,
-                    duration: 250
-                });
-                isDefaultRotation = !isDefaultRotation;
-            }
-        })
+        new RotateButton({
+            defaultRotation: DEFAULT_ROTATION
+        }),
+        new RoundCompass(),
+        new ScaleLine({
+          units: 'metric',
+          target: document.getElementById('scale-container')
+        }),
+        new LayerSwitcher({
+          activationMode: 'click',
+          startActive: false,
+          groupSelectStyle: 'none'  // Prevents group selection
+      })
     ]),
     target: 'map',
     layers: [baseLayers, overlayLayers],
@@ -153,23 +162,8 @@ const map = new Map({
     })
 });
 
-// Add layer switcher control
-map.addControl(new LayerSwitcher({
-    activationMode: 'click',
-    startActive: false,
-    groupSelectStyle: 'none'  // Prevents group selection
-}));
-
-// Update compass rotation
-function updateCompass() {
-    const rotation = map.getView().getRotation();
-    document.querySelector('#compass-arrow').style.transform = 
-        `translate(-50%, -50%) rotate(${rotation * (180 / Math.PI)}deg)`;
-}
-
-// Initialize compass
-map.getView().on('change:rotation', updateCompass);
-updateCompass();
+// Initialize status bar
+statusBar.setMap(map);
 
 // Handle window resize
 window.addEventListener('resize', () => {

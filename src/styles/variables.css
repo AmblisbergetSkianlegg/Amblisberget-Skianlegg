@@ -1,0 +1,242 @@
+/* Amblisberget-Skianlegg Design System Variables
+ * This file contains all design tokens used throughout the application.
+ * Colors are defined in RGB format to support Tailwind's opacity modifiers.
+ * All measurements use rem units for consistent scaling with user preferences.
+ */
+
+:root {
+  /* Theme Configuration
+   * Used for smooth transitions between themes
+   */
+  --theme-transition-duration: 200ms;
+  --theme-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Colors - Primary
+   * Main brand colors used for primary UI elements
+   * Hover states use a lighter shade for better interaction feedback
+   */
+  --color-primary: 28 61 90; /* #1c3d5a - Deep navy blue */
+  --color-primary-hover: 44 90 143; /* #2c5a8f - Lighter navy blue */
+  --color-primary-rgb: rgb(var(--color-primary));
+  --color-primary-hover-rgb: rgb(var(--color-primary-hover));
+  --color-primary-90: rgb(var(--color-primary) / 0.9);
+  --color-primary-50: rgb(var(--color-primary) / 0.5);
+  --color-primary-30: rgb(var(--color-primary) / 0.3);
+  --color-primary-10: rgb(var(--color-primary) / 0.1);
+
+  /* Colors - Secondary
+   * Used for backgrounds and subtle UI elements
+   * Darker shade provides good contrast with primary colors
+   */
+  --color-secondary: 51 71 91; /* #33475B - Slate blue */
+  --color-secondary-rgb: rgb(var(--color-secondary));
+  --color-secondary-90: rgb(var(--color-secondary) / 0.9);
+  --color-secondary-50: rgb(var(--color-secondary) / 0.5);
+  --color-secondary-30: rgb(var(--color-secondary) / 0.3);
+  --color-secondary-10: rgb(var(--color-secondary) / 0.1);
+
+  /* Colors - Accent
+   * Used for highlighting important elements and actions
+   * Rich gold color that complements the navy blue
+   */
+  --color-accent: 205 164 52; /* #CDA434 - Rich gold */
+  --color-accent-hover: 230 184 58; /* #E6B83A - Brighter gold */
+  --color-accent-rgb: rgb(var(--color-accent));
+  --color-accent-hover-rgb: rgb(var(--color-accent-hover));
+  --color-accent-90: rgb(var(--color-accent) / 0.9);
+  --color-accent-50: rgb(var(--color-accent) / 0.5);
+  --color-accent-30: rgb(var(--color-accent) / 0.3);
+  --color-accent-10: rgb(var(--color-accent) / 0.1);
+
+  /* Colors - Text
+   * Text colors for different contexts
+   */
+  --color-text-primary: 255 255 255; /* #111827 */
+  --color-text-secondary: 75 85 99; /* #4B5563 */
+  --color-text-tertiary: 107 114 128; /* #6B7280 */
+  --color-text-disabled: 156 163 175; /* #9CA3AF */
+  --color-text-inverse: 255 255 255; /* #FFFFFF */
+  
+  /* Colors - Background
+   * Surface colors for different elevation levels
+   */
+  --color-bg-base: 255 255 255; /* #FFFFFF */
+  --color-bg-elevated: 249 250 251; /* #F9FAFB */
+  --color-bg-sunken: 243 244 246; /* #F3F4F6 */
+  
+  /* Colors - Border
+   * Border colors for different contexts
+   */
+  --color-border-light: 241 243 245; /* #F1F3F5 - Very light, subtle border */
+  --color-border-medium: 209 213 219; /* #D1D5DB - Medium, visible border */
+  --color-border-heavy: 107 114 128; /* #6B7280 - Strong, prominent border */
+
+  /* Colors - Shadow
+   * Shadow colors with opacity support
+   */
+  --color-shadow: 0 0 0; /* #000000 */
+  --shadow-sm: 0 1px 2px rgb(var(--color-shadow) / 0.05);
+  --shadow-md: 0 4px 6px rgb(var(--color-shadow) / 0.1);
+  --shadow-lg: 0 10px 15px rgb(var(--color-shadow) / 0.1);
+
+  /* Typography - Font Family
+   * Noto Sans provides excellent readability across all sizes
+   * Sans-serif fallback for system fonts
+   */
+  --font-family-primary: "Noto Sans", sans-serif;
+
+  /* Typography - Font Sizes
+   * Modular scale for consistent type hierarchy
+   * Base size (1rem) = 16px
+   */
+  --font-size-xxs: 0.6rem;    /* 9.6px - Smallest text, use sparingly */
+  --font-size-xs: 0.75rem;    /* 12px - Small labels */
+  --font-size-sm: 0.875rem;   /* 14px - Secondary text */
+  --font-size-base: 1rem;     /* 16px - Body text */
+  --font-size-lg: 1.125rem;   /* 18px - Large text */
+  --font-size-xl: 1.25rem;    /* 20px - Headings */
+  --font-size-2xl: 1.5rem;    /* 24px - Major headings */
+
+  /* Typography - Line Heights
+   * Proportional line heights for different contexts
+   */
+  --line-height-tight: 1.25;  /* Compact text */
+  --line-height-normal: 1.5;  /* Body text */
+  --line-height-relaxed: 1.75; /* Long-form text */
+
+  /* Spacing - Header Heights
+   * Responsive heights for the main header
+   * Smaller on mobile for better space usage
+   */
+  --spacing-header: 3.75rem;        /* 60px - Desktop */
+  --spacing-header-tablet: 3.125rem; /* 50px - Tablet */
+  --spacing-header-mobile: 2.8125rem; /* 45px - Mobile */
+  --spacing-statusBar: 2rem;
+
+  /* Spacing - Base Units
+   * Consistent spacing scale for margins and padding
+   * Based on 4px (0.25rem) increments
+   */
+  --spacing-1: 0.25rem;  /* 4px */
+  --spacing-2: 0.5rem;   /* 8px */
+  --spacing-3: 0.75rem;  /* 12px */
+  --spacing-4: 1rem;     /* 16px */
+  --spacing-5: 1.25rem;  /* 20px */
+  --spacing-6: 1.5rem;   /* 24px */
+  --spacing-8: 2rem;     /* 32px */
+  --spacing-9: 2.25rem;  /* 36px */
+  --spacing-10: 2.5rem;  /* 40px */
+
+  /* Effects - Shadows
+   * Subtle shadows for depth and elevation
+   * Uses black with low opacity for natural look
+   */
+  --shadow-sm: 0 0.125rem 0.25rem rgb(var(--color-black) / 0.1);
+  --shadow-md: 0 0.125rem 0.5rem rgb(var(--color-black) / 0.15);
+
+  /* Effects - Transitions
+   * Smooth transitions for interactive elements
+   * Fast for subtle changes, normal for larger ones
+   */
+  --transition-duration-fast: 150ms;
+  --transition-duration-normal: 250ms;
+  --transition-timing-function: ease-in-out;
+
+  /* Map Controls
+   * Specific variables for map interface elements
+   * Consistent sizing and spacing for controls
+   */
+  --map-control-size: 2.25rem;  /* 36px - Control button size */
+  --map-control-spacing: 1rem;  /* 16px - Space between controls */
+  --map-viewport-height: calc(100vh - var(--spacing-header) - var(--spacing-statusBar));
+
+  /* Neutral Colors
+   * Basic black and white colors for text and overlays
+   * Defined in RGB for opacity support
+   */
+  --color-white: 255 255 255;
+  --color-black: 0 0 0;
+  --color-white-rgb: rgb(var(--color-white));
+  --color-black-rgb: rgb(var(--color-black));
+  --color-white-90: rgb(var(--color-white) / 0.9);
+  --color-white-50: rgb(var(--color-white) / 0.5);
+  --color-white-30: rgb(var(--color-white) / 0.3);
+  --color-white-10: rgb(var(--color-white) / 0.1);
+}
+
+/* Tablet Breakpoint Variables
+ * Adjusts viewport height for tablet header size
+ */
+@media (max-width: 64em) {
+  :root {
+    --map-viewport-height: calc(100vh - var(--spacing-header-tablet) - var(--spacing-statusBar));
+  }
+}
+
+/* Mobile Breakpoint Variables
+ * Adjusts viewport height for mobile header size
+ */
+@media (max-width: 30em) {
+  :root {
+    --map-viewport-height: calc(100vh - var(--spacing-header-mobile) - var(--spacing-statusBar));
+  }
+}
+
+/* Dark Theme Configuration
+ * Using deep dark primary colors with high contrast accents
+ * All colors maintain WCAG 2.1 AA contrast ratios
+ */
+:root[data-theme="dark"] {
+  /* Colors - Primary
+   * Deep dark primary colors for main surfaces
+   */
+  --color-primary: 13 17 23; /* #0d1117 - Deep charcoal */
+  --color-primary-hover: 30 36 44; /* #1e242c - Lighter charcoal */
+  --color-primary-rgb: rgb(var(--color-primary));
+  --color-primary-hover-rgb: rgb(var(--color-primary-hover));
+
+  /* Colors - Secondary
+   * Rich dark blue that echoes the light theme's navy
+   */
+  --color-secondary: 28 42 64; /* #1c2a40 - Deep navy */
+  --color-secondary-rgb: rgb(var(--color-secondary));
+
+  /* Colors - Accent
+   * Warm gold accent that maintains consistency with light theme
+   */
+  --color-accent: 179 143 45; /* #B38F2D - Deep gold */
+  --color-accent-hover: 205 164 52; /* #CDA434 - Brighter gold */
+  --color-accent-rgb: rgb(var(--color-accent));
+  --color-accent-hover-rgb: rgb(var(--color-accent-hover));
+
+  /* Colors - Text
+   * High contrast text colors for readability
+   */
+  --color-text-primary: 255 255 255; /* #f0f0f0 - Main text */
+  --color-text-secondary: 139 148 158; /* #8b949e - Secondary text */
+  --color-text-tertiary: 88 96 105; /* #586069 - Muted text */
+  --color-text-disabled: 68 76 86; /* #444c56 - Disabled text */
+  --color-text-inverse: 255 255 255; /* #ffffff - Inverse text */
+  
+  /* Colors - Background
+   * Layered dark surfaces for depth
+   */
+  --color-bg-base: 13 17 23; /* #0d1117 - Base dark background */
+  --color-bg-elevated: 22 27 34; /* #161b22 - Elevated surface */
+  --color-bg-sunken: 1 4 9; /* #010409 - Deepest background */
+  
+  /* Colors - Border
+   * Subtle borders for separation
+   */
+  --color-border-light: 38 44 51; /* #262C33 - Subtle dark border */
+  --color-border-medium: 68 76 86; /* #444C56 - Medium dark border */
+  --color-border-heavy: 107 114 128; /* #6B7280 - Strong dark border */
+
+  /* Colors - Shadow
+   * Subtle shadows for depth
+   */
+  --color-shadow: 0 0 0; /* #000000 */
+  --shadow-sm: 0 1px 2px rgb(var(--color-shadow) / 0.1);
+  --shadow-md: 0 4px 6px rgb(var(--color-shadow) / 0.15);
+  --shadow-lg: 0 8px 12px rgb(var(--color-shadow) / 0.2);
+}

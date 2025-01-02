@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" data-theme="dark">
     <head>
         <title>Amblisberget Skianlegg</title>
         <meta charset="utf-8">
@@ -16,16 +16,8 @@
                 <p class="info-text">Kartlagt av <a href="https://mjosdrone.no" target="_blank" rel="noopener noreferrer">MjøsDrone</a></p>
             </span>
         </div>
-        <div id="map" class="h-[calc(100vh-theme(spacing.header))] w-full bg-black">
-          <div class="absolute bottom-4 left-4 bg-white/90 rounded-full w-20 h-20 shadow-md pointer-events-none z-10">
-              <div class="compass-center w-20 h-20 border-4 border-gray-600 rounded-full"></div>
-              <div id="compass-arrow" class="compass-center w-[0.2rem] h-9 bg-gradient-to-b from-accent to-gray-600 origin-center"></div>
-              <div class="compass-label top-1 left-1/2 -translate-x-1/2">N</div>
-              <div class="compass-label right-1 top-1/2 -translate-y-1/2 pr-[0.2rem]">Ø</div>
-              <div class="compass-label bottom-1 left-1/2 -translate-x-1/2">S</div>
-              <div class="compass-label left-1 top-1/2 -translate-y-1/2 pl-[0.2rem]">V</div>
-          </div>
-        </div>
+        <div id="map" class="h-[calc(100vh-theme(spacing.header)-theme(spacing.statusBar))] w-full bg-black"></div>
+        <div id="status-bar"></div>
         <script type="module" src="/src/main.ts"></script>
     </body>
 </html>

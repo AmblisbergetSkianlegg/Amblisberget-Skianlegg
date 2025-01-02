@@ -1,0 +1,101 @@
+{
+    "// BASIC SITE INFORMATION": "Basic information about your website",
+    "site": {
+        "name": "Amblisberget Skianlegg",
+        "description": "Digitalt terrengkart over Amblisberget Skianlegg. Kartlagt av MjøsDrone med høypresisjons dronebilder.",
+        "url": "https://amblisberget.no",
+        "locale": "nb_NO",
+        "type": "website",
+        "publishedTime": "2024-01-02",
+        "modifiedTime": "2024-01-02"
+    },
+
+    "// PAGE META TAGS": "Basic meta tags for search engines",
+    "meta": {
+        "title": "Amblisberget Skianlegg - Digitalt Terrengkart",
+        "keywords": "skianlegg, terrengkart, Amblisberget, MjøsDrone, skiløyper, kart",
+        "author": "MjøsDrone",
+        "themeColor": "#111827",
+        "robots": "index, follow",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "rating": "general"
+    },
+
+    "// SOCIAL MEDIA SHARING": "How your site appears when shared on social media",
+    "social": {
+        "openGraph": {
+            "title": "Amblisberget Skianlegg - Digitalt Terrengkart",
+            "description": "Utforsk Amblisberget Skianlegg med vårt interaktive terrengkart. Kartlagt med høypresisjons dronebilder.",
+            "image": "/images/og-image.jpg",
+            "imageAlt": "Oversiktsbilde av Amblisberget Skianlegg",
+            "imageWidth": "1200",
+            "imageHeight": "630"
+        },
+        "twitter": {
+            "card": "summary_large_image",
+            "site": "@amblisberget",
+            "creator": "@mjosdrone"
+        }
+    },
+
+    "// STRUCTURED DATA": "Information for search engines to better understand your content",
+    "structuredData": {
+        "organization": {
+            "name": "Amblisberget Skianlegg",
+            "url": "https://amblisberget.no",
+            "logo": "https://amblisberget.no/logo.png",
+            "contactPoint": {
+                "telephone": "+47-XXX-XX-XXX",
+                "email": "kontakt@amblisberget.no"
+            }
+        },
+        "place": {
+            "name": "Amblisberget Skianlegg",
+            "type": "SportsActivityLocation",
+            "address": {
+                "streetAddress": "Skriv inn gateadresse",
+                "addressLocality": "Skriv inn by",
+                "postalCode": "Skriv inn postnummer",
+                "addressCountry": "NO"
+            },
+            "geo": {
+                "latitude": "60.XXX",
+                "longitude": "11.XXX"
+            },
+            "openingHours": "Mo-Su 00:00-23:59"
+        }
+    },
+
+    "// ICONS AND FAVICONS": "Icons for different devices and browsers",
+    "icons": {
+        "favicon": "/favicon.ico",
+        "appleTouchIcon": "/apple-touch-icon.png",
+        "maskIcon": "/safari-pinned-tab.svg",
+        "maskIconColor": "#111827"
+    },
+
+    "// ANALYTICS AND TRACKING": "Website analytics configuration",
+    "analytics": {
+        "// Google Analytics ID": "Skriv inn din Google Analytics ID (starter med 'G-')",
+        "googleAnalytics": ""
+    },
+
+    "// VERIFICATION CODES": "Codes to verify site ownership",
+    "verification": {
+        "// Google Search Console": "Skriv inn din verifiseringskode fra Google Search Console",
+        "google": "",
+        
+        "// Bing Webmaster Tools": "Skriv inn din verifiseringskode fra Bing Webmaster Tools",
+        "bing": "",
+        
+        "// Yandex Webmaster": "Skriv inn din verifiseringskode fra Yandex Webmaster",
+        "yandex": ""
+    },
+
+    "// SECURITY HEADERS": "Security-related HTTP headers",
+    "security": {
+        "contentSecurityPolicy": "default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;",
+        "xFrameOptions": "SAMEORIGIN",
+        "referrerPolicy": "strict-origin-when-cross-origin"
+    }
+}

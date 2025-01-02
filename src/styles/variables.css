@@ -52,7 +52,7 @@
    * Text colors for different contexts
    */
   --color-text-primary: 255 255 255; /* #111827 */
-  --color-text-secondary: 75 85 99; /* #4B5563 */
+  --color-text-secondary: 209 213 219; /* #D1D5DB */
   --color-text-tertiary: 107 114 128; /* #6B7280 */
   --color-text-disabled: 156 163 175; /* #9CA3AF */
   --color-text-inverse: 255 255 255; /* #FFFFFF */
@@ -164,24 +164,6 @@
   --color-white-10: rgb(var(--color-white) / 0.1);
 }
 
-/* Tablet Breakpoint Variables
- * Adjusts viewport height for tablet header size
- */
-@media (max-width: 64em) {
-  :root {
-    --map-viewport-height: calc(100vh - var(--spacing-header-tablet) - var(--spacing-statusBar));
-  }
-}
-
-/* Mobile Breakpoint Variables
- * Adjusts viewport height for mobile header size
- */
-@media (max-width: 30em) {
-  :root {
-    --map-viewport-height: calc(100vh - var(--spacing-header-mobile) - var(--spacing-statusBar));
-  }
-}
-
 /* Dark Theme Configuration
  * Using deep dark primary colors with high contrast accents
  * All colors maintain WCAG 2.1 AA contrast ratios
@@ -239,4 +221,22 @@
   --shadow-sm: 0 1px 2px rgb(var(--color-shadow) / 0.1);
   --shadow-md: 0 4px 6px rgb(var(--color-shadow) / 0.15);
   --shadow-lg: 0 8px 12px rgb(var(--color-shadow) / 0.2);
+}
+
+/* Tablet Breakpoint Variables
+ * Adjusts viewport height for tablet header size
+ */
+@media (max-width: 64em) {
+  :root {
+    --map-viewport-height: calc(100dvh - var(--spacing-header-tablet) - var(--spacing-statusBar));
+  }
+}
+
+/* Mobile Breakpoint Variables
+ * Adjusts viewport height for mobile header size
+ */
+@media (max-width: 30em) {
+  :root {
+    --map-viewport-height: calc(100dvh - var(--spacing-header-mobile));
+  }
 }

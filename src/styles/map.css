@@ -1,20 +1,25 @@
 @import '../../node_modules/ol/ol.css';
 @import '../../node_modules/ol-layerswitcher/dist/ol-layerswitcher.css';
-@import './controls.css';
+@import './map/controls.css';
+@import './map/layers-panel.css';
 
 /* OpenLayers viewport and containers */
+#map {
+  @apply static h-[var(--map-viewport-height)] w-full bg-black !important;
+}
+
 .ol-viewport {
-    @apply h-[var(--map-viewport-height)] !important;
+  @apply h-[var(--map-viewport-height)] !important;
 }
 
 .ol-viewport.ol-touch {
-    @apply h-[var(--map-viewport-height)] !important;
+  @apply h-[var(--map-viewport-height)] !important;
 }
 
 
 /* Status Bar */
 #status-bar {
-  @apply bg-primary bg-gradient-to-r from-primary to-primary-hover px-2
+  @apply static bg-primary bg-gradient-to-r from-primary to-primary-hover px-2
          flex items-center text-xs text-text-primary border-t border-accent/50;
 }
 
@@ -63,23 +68,18 @@
 }
 
 
-/* Responsive Design */
-@media (max-width: 64em) { /* 1024px */
-  .ol-viewport {
-      @apply h-[var(--map-viewport-height)] !important;
-  }
-  
-  .ol-viewport.ol-touch {
-      @apply h-[var(--map-viewport-height)] !important;
-  }
+
+/* Tablet Breakpoint Variables
+ * Adjusts viewport height for tablet header size
+ */
+@media (max-width: 64em) {
 }
 
-@media (max-width: 30em) { /* 480px */
-  .ol-viewport {
-      @apply h-[var(--map-viewport-height)] !important;
-  }
-  
-  .ol-viewport.ol-touch {
-      @apply h-[var(--map-viewport-height)] !important;
+/* Mobile Breakpoint Variables
+ * Adjusts viewport height for mobile header size
+ */
+@media (max-width: 30em) {
+  #status-bar {
+    display: none;
   }
 }

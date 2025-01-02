@@ -4,13 +4,12 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import XYZ from 'ol/source/XYZ';
-import LayerSwitcher from 'ol-layerswitcher';
 import { defaults as defaultControls, ScaleLine } from 'ol/control';
 import { Group as LayerGroup } from 'ol/layer';
 import { RoundCompass } from './controls/Compass';
 import { RotateButton } from './controls/RotateButton';
 import { StatusBar } from './controls/StatusBar';
-import { transform } from 'ol/proj';
+import { LayersPanel } from './controls/LayersPanel';
 
 // Constants
 const DEFAULT_ROTATION = -Math.PI / 2;
@@ -71,7 +70,7 @@ const baseLayers = new LayerGroup({
     title: null,
     layers: [
         new TileLayer({
-            title: null,
+            title: 'Amblisberget Skianlegg',
             type: 'base',
             extent: MAP_EXTENT,
             source: new XYZ({
@@ -85,7 +84,7 @@ const baseLayers = new LayerGroup({
 });
 
 const overlayLayers = new LayerGroup({
-    title: 'Kartoverlegg',
+    title: 'Overlegg',
     layers: [
         new TileLayer({
             title: 'Skispor',
@@ -139,16 +138,12 @@ const map = new Map({
         new RotateButton({
             defaultRotation: DEFAULT_ROTATION
         }),
-        new RoundCompass(),
+        // new RoundCompass(),
         new ScaleLine({
           units: 'metric',
           target: document.getElementById('scale-container')
         }),
-        new LayerSwitcher({
-          activationMode: 'click',
-          startActive: false,
-          groupSelectStyle: 'none'  // Prevents group selection
-      })
+        new LayersPanel()
     ]),
     target: 'map',
     layers: [baseLayers, overlayLayers],

@@ -18,8 +18,8 @@
   /* Header */
   #header {
       @apply bg-primary bg-gradient-to-r from-primary to-primary-hover
-             text-text-primary px-8 shadow-sm relative z-10 
-             flex items-center justify-center h-header border-b border-accent/50;
+             text-text-primary px-8 shadow-sm flex items-center
+             justify-center h-header border-b border-accent/50;
   }
 
   #header > span {

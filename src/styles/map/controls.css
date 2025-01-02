@@ -26,6 +26,7 @@
   box-shadow: none !important;
 }
 
+
 /* Zoom Control */
 .ol-zoom {
   @apply absolute bottom-4 right-4 !important;
@@ -41,6 +42,7 @@
   @apply mb-2 !important;
 }
 
+
 /* Rotate Control */
 .ol-rotate {
   @apply absolute !important;
@@ -53,6 +55,7 @@
 .ol-rotate button {
   @apply w-[var(--map-control-size)] h-[var(--map-control-size)] items-center justify-center !important;
 }
+
 
 /* Compass Control */
 .ol-round-compass {
@@ -77,6 +80,7 @@
 .ol-round-compass-label:nth-child(2) { @apply right-1 top-1/2 -translate-y-1/2 pr-[0.2rem]; }
 .ol-round-compass-label:nth-child(3) { @apply bottom-1 left-1/2 -translate-x-1/2; }
 .ol-round-compass-label:nth-child(4) { @apply left-1 top-1/2 -translate-y-1/2 pl-[0.2rem]; }
+
 
 /* Scale Line Container */
 #scale-container .ol-scale-line {
@@ -103,54 +107,4 @@
 
 #scale-container .ol-scale-line-inner::after {
   right: 0;
-}
-
-/* Layer Switcher */
-.layer-switcher {
-  @apply absolute top-4 right-4 rounded-lg shadow-md max-w-[18.75rem] p-0 bg-bg-base;
-  overflow: hidden !important;
-}
-
-.layer-switcher.shown.layer-switcher-activation-mode-click {
-  padding-left: unset !important;
-}
-
-.layer-switcher.shown.layer-switcher-activation-mode-click > button {
-  @apply flex items-center justify-end bg-primary text-text-inverse relative 
-         m-0 rounded-none border-b border-text-inverse/20 w-full h-9
-         px-3 text-sm float-none !important;
-}
-
-.layer-switcher.shown.layer-switcher-activation-mode-click > button::before {
-  content: "Skjul";
-  @apply mr-2.5;
-}
-
-.layer-switcher.shown .panel {
-  @apply block border-none p-1 bg-transparent !important;
-  background-color: rgb(var(--color-bg-elevated)) !important;
-  border: 1px solid rgb(var(--color-border-light)) !important;
-  color: rgb(var(--color-text-primary)) !important;
-}
-
-.layer-switcher ul {
-  @apply m-0;
-}
-
-.layer-switcher li {
-  @apply relative m-0 py-0.5;
-}
-
-.layer-switcher li.layer {
-  @apply flex items-center;
-}
-
-.layer-switcher li label {
-  @apply pl-7 m-0 leading-none text-[0.9rem] text-text-primary;
-  color: rgb(var(--color-text-primary)) !important;
-}
-
-.layer-switcher li input {
-  @apply absolute left-[0.2em] top-1/2 -translate-y-1/2 m-0 
-         h-[0.9rem] w-[0.9rem];
 }
